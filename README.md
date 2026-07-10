@@ -39,11 +39,8 @@
 ## 🎨 Hero Banner
 
 <p align="center">
-  <img src="docs/images/banner.png" alt="SpeakCode Compiler Pipeline and Logo Gradient Banner Placeholder" width="800" />
+  <img src="docs/images/banner.png" alt="SpeakCode — Programming Like Talking" width="900" />
 </p>
-
-> [!NOTE]
-> **Banner Asset Details:** The above `docs/images/banner.png` asset is designed to display the SpeakCode logo, its modular compiler pipeline, and a modern aesthetic gradient background.
 
 ---
 
@@ -590,16 +587,22 @@ SpeakCode was submitted as a B.Tech 7th Semester Mini Project in Compiler Design
 
 ---
 
-## 👤 Author Profile
+## 👤 Author
 
 <p align="center">
-  <img src="docs/images/author_avatar.png" alt="Candidate Author Avatar Photo Placeholder" width="120" />
+  <a href="https://github.com/krisvasoya">
+    <img src="https://github.com/krisvasoya.png" alt="Krish Vasoya" width="120" height="120" style="border-radius: 50%;" />
+  </a>
 </p>
 
-*   **Name:** Krish Vasoya
-*   **Role:** Lead Compiler Architect & Developer
-*   **Academic Year:** 2026
-*   **Links:** [GitHub Profile](https://github.com/krisvasoya) | [LinkedIn Profile](https://linkedin.com) | [Email Details](mailto:kris.vasoya@email.com)
+<p align="center">
+  <b>Krish Vasoya</b><br/>
+  Lead Compiler Architect &amp; Developer<br/>
+  B.Tech Computer Science &amp; Design · 2026<br/>
+  <br/>
+  <a href="https://github.com/krisvasoya"><img src="https://img.shields.io/badge/GitHub-krisvasoya-181717?style=flat&logo=github" alt="GitHub" /></a>
+  <a href="https://linkedin.com"><img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat&logo=linkedin" alt="LinkedIn" /></a>
+</p>
 
 ---
 
