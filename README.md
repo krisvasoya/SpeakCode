@@ -1,4 +1,4 @@
-﻿<p align="center">
+<p align="center">
   <img src="docs/images/banner.png" alt="SpeakCode — Programming Like Talking" width="900" />
 </p>
 
@@ -256,51 +256,174 @@ python speakcode.py version           # Print compiler version
 
 ## Compiler Architecture
 
+### Module Interaction Diagram
+
 ```mermaid
-graph LR
-    A["Source (.speak)"] --> B[Lexer]
-    B --> C[Parser]
-    C --> D[Semantic Analyzer]
-    D --> E[Interpreter]
-    E --> F[Output]
+flowchart TD
+    CLI["🖥️  speakcode.py\nCLI Entry Point"]
+
+    subgraph FRONT ["  Compiler Front End  "]
+        direction TB
+        LEX["speak_lexer.py\nLexical Scanner"]
+        TOK["speak_tokens.py\nToken Definitions"]
+        PAR["speak_parser.py\nRecursive Descent Parser"]
+        AST["speak_ast.py\nAST Node Dataclasses"]
+        SEM["speak_semantic.py\nSemantic Analyzer"]
+    end
+
+    subgraph BACK ["  Execution Back End  "]
+        direction TB
+        INT["speak_interpreter.py\nTree-Walking Interpreter"]
+        ENV["Runtime Environment\nDynamic Scope Chain"]
+    end
+
+    subgraph TOOLS ["  Developer Tools  "]
+        direction TB
+        FMT["speak_formatter.py\nCode Normalizer"]
+        EXP["speak_explainer.py\nAST → English"]
+        ERR["speak_errors.py\nDiagnostic Exceptions"]
+    end
+
+    CLI --> LEX
+    CLI --> FMT
+    CLI --> EXP
+    LEX -- "Token Stream" --> PAR
+    TOK -. "TokenType enum" .-> LEX
+    PAR -- "Abstract Syntax Tree" --> AST
+    PAR -. "SpeakError" .-> ERR
+    AST -- "Verified AST" --> SEM
+    SEM -. "SpeakError" .-> ERR
+    SEM -- "Analyzed AST" --> INT
+    INT -- "Executes" --> ENV
+    INT -. "SpeakError" .-> ERR
 ```
+
+---
+
+### Pipeline Stages
 
 | Stage | Module | Responsibility |
 |---|---|---|
-| **Lexer** | `speak_lexer.py` | Tokenizes source into a typed token stream |
-| **Parser** | `speak_parser.py` | Recursive descent; builds the AST; panic-mode error recovery |
-| **Semantic Analyzer** | `speak_semantic.py` | Scope resolution, type checking, function hoisting |
-| **Interpreter** | `speak_interpreter.py` | Tree-walking execution with dynamic environments |
+| **Lexer** | `speak_lexer.py` | Tokenizes source character-by-character into a typed token stream |
+| **Parser** | `speak_parser.py` | Recursive descent; builds the AST; panic-mode error recovery at `.` boundaries |
+| **Semantic Analyzer** | `speak_semantic.py` | Scope resolution, static type checking, global function hoisting |
+| **Interpreter** | `speak_interpreter.py` | Tree-walking execution with dynamic parent-scope-linked environments |
 
-**Error recovery:** On a syntax error, the parser advances to the next `.` and continues parsing, so multiple errors are reported in one pass.
+> **Error recovery:** On a syntax error, the parser advances to the next `.` and continues, so multiple errors are reported in one pass.
 
-**Function hoisting:** All function declarations are registered globally before any statement executes, so functions can be called before they are defined in the file.
+> **Function hoisting:** A semantic pre-pass registers all function declarations globally before any statement executes — functions can be called before they are defined.
 
 ---
 
 ## Project Structure
 
+### Directory Tree
+
 ```
 SpeakCode/
-├── speakcode.py           # CLI entry point
-├── speak_lexer.py         # Lexical scanner
-├── speak_parser.py        # Recursive descent parser
-├── speak_ast.py           # AST node dataclasses
-├── speak_semantic.py      # Scope and type analyzer
-├── speak_interpreter.py   # Tree-walking interpreter
-├── speak_errors.py        # Diagnostic exceptions
-├── speak_tokens.py        # Token type definitions
-├── speak_formatter.py     # Code normalizer
-├── speak_explainer.py     # AST-to-English translator
-├── examples/              # 17 runnable example programs
-├── tests/                 # 75 unit and integration tests
-└── docs/
-    ├── Project_Report.md
-    ├── API_Documentation.md
-    ├── Developer_Guide.md
-    ├── User_Manual.md
-    └── Examples_Guide.md
+│
+├── 📄 speakcode.py               CLI entry point — dispatches all subcommands
+├── 📄 speak_lexer.py             Stateful character scanner — produces Token stream
+├── 📄 speak_tokens.py            Token dataclass and TokenType enum definitions
+├── 📄 speak_parser.py            Recursive descent parser — produces AST with error recovery
+├── 📄 speak_ast.py               Immutable AST node dataclasses (21 node types)
+├── 📄 speak_semantic.py          Scope analyzer, type checker, and function hoister
+├── 📄 speak_interpreter.py       Tree-walking interpreter with dynamic environments
+├── 📄 speak_errors.py            Custom exception hierarchy (SPK101–SPK108)
+├── 📄 speak_formatter.py         Keyword casing normalizer and indentation fixer
+├── 📄 speak_explainer.py         AST visitor that translates code to plain English
+├── 📄 speak_symbols.py           Symbol table (legacy; scope now in speak_semantic.py)
+├── 📄 compiler_info.py           Version metadata and build constants
+├── 📄 constants.py               Shared language constants and keyword lists
+├── 📄 test_runner.py             Standalone integration test runner
+├── 📄 Language_Specification.md  Formal grammar and language specification
+├── 📄 speakcode-syntax.json      Syntax definition for editor highlighting
+├── 📄 CONTRIBUTING.md            Contributor guidelines and process
+├── 📄 CODE_OF_CONDUCT.md         Community standards
+├── 📄 LICENSE                    MIT License
+│
+├── 📂 examples/                  17 runnable SpeakCode programs
+│   ├── 📄 hello_world.speak      Hello World — first program
+│   ├── 📄 calculator.speak       Four-operation calculator
+│   ├── 📄 fibonacci.speak        Recursive Fibonacci sequence
+│   ├── 📄 factorial.speak        Recursive factorial computation
+│   ├── 📄 fizzbuzz.speak         Classic FizzBuzz
+│   ├── 📄 guess_game.speak       Number guessing game
+│   ├── 📄 area_calculator.speak  Geometric area calculator
+│   ├── 📄 average_calculator.speak   Average of N numbers
+│   ├── 📄 temperature_converter.speak  Celsius / Fahrenheit conversion
+│   ├── 📄 multiplication_table.speak   Nested loop times table
+│   ├── 📄 student_result.speak   Grade evaluation system
+│   ├── 📄 voting_eligibility.speak     Age-based voting check
+│   ├── 📄 shopping_bill.speak    Bill calculation with items
+│   ├── 📄 banking_system.speak   Deposit, withdraw, balance logic
+│   ├── 📄 atm_simulation.speak   ATM PIN and transaction flow
+│   ├── 📄 library_management.speak     Book issue/return simulation
+│   └── 📄 functions_demo.speak   Function declaration and call patterns
+│
+├── 📂 tests/                     75 unit and integration tests
+│   ├── 📄 __init__.py            Package marker
+│   ├── 📄 test_lexer.py          Lexer token recognition tests
+│   ├── 📄 test_lexer_stress.py   Lexer performance stress test (20,000 lines)
+│   ├── 📄 test_tokens.py         Token dataclass and enum tests
+│   ├── 📄 test_parser.py         Parser grammar and AST construction tests
+│   ├── 📄 test_ast.py            AST node structure and serialization tests
+│   ├── 📄 test_semantic.py       Scope, type, and hoisting validation tests
+│   ├── 📄 test_interpreter.py    End-to-end execution tests
+│   ├── 📄 test_errors.py         Error code and exception message tests
+│   └── 📄 test_cli.py            CLI subcommand output tests
+│
+└── 📂 docs/                      Documentation
+    ├── 📄 User_Manual.md         Language syntax reference for users
+    ├── 📄 Developer_Guide.md     Guide to extending the compiler
+    ├── 📄 API_Documentation.md   Internal module API reference
+    ├── 📄 Examples_Guide.md      Annotated walkthrough of all 17 examples
+    ├── 📄 Project_Report.md      Academic report with 13 architecture diagrams
+    ├── 📄 Viva_Preparation_Guide.md  150-question examination preparation guide
+    ├── 📄 Release_Audit_Report.md    v1.0 pre-release validation results
+    ├── 📄 Submission_Checklist.md    Final project submission checklist
+    └── 📂 images/                Banners and visual assets
 ```
+
+---
+
+### Module Reference
+
+| Module | Stage | Purpose | Key Dependencies |
+|---|---|---|---|
+| `speakcode.py` | CLI | Parses subcommands and coordinates the pipeline | All modules |
+| `speak_tokens.py` | Lexer | Defines `Token` dataclass and `TokenType` enum | — |
+| `speak_lexer.py` | Lexer | Scans source text into a `Token` list | `speak_tokens.py`, `speak_errors.py` |
+| `speak_ast.py` | Parser | Defines 21 immutable AST node dataclasses | — |
+| `speak_parser.py` | Parser | Builds AST via recursive descent; recovers on `.` | `speak_ast.py`, `speak_errors.py` |
+| `speak_semantic.py` | Semantic | Validates scopes, types, and hoists functions | `speak_ast.py`, `speak_errors.py` |
+| `speak_interpreter.py` | Interpreter | Executes the AST tree-walking with scope environments | `speak_ast.py`, `speak_errors.py` |
+| `speak_errors.py` | Cross-cutting | Custom exception hierarchy with SPK error codes | — |
+| `speak_formatter.py` | Tool | Normalizes keyword casing and 4-space indentation | `speak_lexer.py` |
+| `speak_explainer.py` | Tool | Walks AST and produces plain-English descriptions | `speak_ast.py` |
+| `speak_symbols.py` | Legacy | Early symbol table (superseded by `speak_semantic.py`) | — |
+| `compiler_info.py` | Meta | Version string and build metadata constants | — |
+| `constants.py` | Shared | Keyword lists and shared language constants | — |
+| `test_runner.py` | Test | Standalone runner for integration-level test cases | All compiler modules |
+
+---
+
+### Design Rationale
+
+SpeakCode's repository layout follows the **separation of concerns** principle that governs production compiler projects.
+
+**One module, one stage.** Each compiler phase lives in its own file. The lexer knows nothing about the parser; the parser knows nothing about the interpreter. This means a bug in semantic analysis is isolated to `speak_semantic.py` without any possibility of cross-stage contamination.
+
+**Immutable AST nodes.** All 21 AST nodes in `speak_ast.py` are Python `dataclass` objects with `frozen=True`. Neither the parser nor the interpreter can mutate a node after it is created, which eliminates an entire class of bugs common in hand-written compilers.
+
+**Centralized error handling.** Every diagnostic exception inherits from a single hierarchy in `speak_errors.py`. This means the CLI can catch one base type and format any error identically, regardless of which stage raised it.
+
+**Tests mirror source.** Each compiler module has a dedicated test file — `speak_lexer.py` → `test_lexer.py`, `speak_parser.py` → `test_parser.py`. This 1:1 mapping makes it trivial to locate failing tests and to know exactly what test coverage exists for any module.
+
+**Examples as living specifications.** The 17 programs in `examples/` are not just demos — they are executable specifications of language behavior. Any future change to the compiler can be validated immediately by running all examples.
+
+**Documentation by audience.** `docs/` separates documents by reader: `User_Manual.md` for language users, `Developer_Guide.md` for contributors, `API_Documentation.md` for module authors. Academic deliverables (`Project_Report.md`, `Viva_Preparation_Guide.md`) are co-located but clearly named.
+
 
 ---
 
