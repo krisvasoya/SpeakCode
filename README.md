@@ -4,12 +4,23 @@
 -->
 
 <p align="center">
-  <code style="font-size: 40px; font-weight: bold;">🎙️ SpeakCode</code>
+<pre>
+███████╗██████╗ ███████╗ █████╗ ██╗  ██╗ ██████╗ ██████╗ ██████╗ ███████╗
+██╔════╝██╔══██╗██╔════╝██╔══██╗██║ ██╔╝██╔════╝██╔═══██╗██╔══██╗██╔════╝
+███████╗██████╔╝█████╗  ███████║█████╔╝ ██║     ██║   ██║██║  ██║█████╗  
+╚════██║██╔═══╝ ██╔══╝  ██╔══██║██╔═██╗ ██║     ██║   ██║██║  ██║██╔══╝  
+███████║██║     ███████╗██║  ██║██║  ██╗╚██████╗╚██████╔╝██████╔╝███████╗
+╚══════╝╚═╝     ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝
+                   SpeakCode Compiler  v1.0.0  ·  "Programming Like Talking"
+</pre>
 </p>
 
 <p align="center">
-  <b>Programming should feel like writing simple English.</b>
+  <i>A conversational programming language compiler built from scratch in Python.</i><br/>
+  <b>Write code the way you speak — in plain, simple English.</b>
 </p>
+
+<br/>
 
 <p align="center">
   <a href="https://github.com/krisvasoya/SpeakCode/releases"><img src="https://img.shields.io/badge/Version-1.0.0--RC1-orange.svg" alt="Version" /></a>
