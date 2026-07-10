@@ -1,0 +1,21 @@
+note: Average Calculator of N numbers in SpeakCode.
+
+Remember 0 as count.
+Ask "How many numbers do you want to average? " and save as count.
+
+If count is at most 0 then
+    Speak "Please enter a positive count.".
+Otherwise
+    Remember 0 as total_sum.
+    Remember 1 as index.
+    
+    While index is at most count repeat
+        Remember 0 as val.
+        Ask "Enter number " plus index plus ": " and save as val.
+        Change total_sum to total_sum plus val.
+        Change index to index plus 1.
+    Finish looping.
+    
+    Remember total_sum divided by count as average.
+    Speak "The average of the " plus count plus " numbers is " plus average.
+Finish checking.

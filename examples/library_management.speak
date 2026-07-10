@@ -1,0 +1,18 @@
+note: Library Fine Calculator in SpeakCode.
+
+Speak "--- Library Book Return Checkout ---".
+
+Remember 0 as days_late.
+Ask "Enter number of days the book is overdue: " and save as days_late.
+
+If days_late is same as 0 then
+    Speak "Thank you! The book was returned on time. Fine: $0.".
+Otherwise if days_late is at most 5 then
+    Remember days_late times 1 as fine.
+    Speak "Book is returned late by " plus days_late plus " days.".
+    Speak "Total Fine: $" plus fine plus " ($1 per day).".
+Otherwise
+    Remember 5 plus ((days_late minus 5) times 2) as fine.
+    Speak "Book is returned late by " plus days_late plus " days.".
+    Speak "Total Fine: $" plus fine plus " ($1 for first 5 days, $2/day thereafter).".
+Finish checking.

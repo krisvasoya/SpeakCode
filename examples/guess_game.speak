@@ -1,0 +1,23 @@
+note: Number Guessing Game in SpeakCode.
+
+Remember 42 as secret_number.
+Remember 0 as guess.
+Remember 0 as attempts.
+
+Speak "Welcome to the SpeakCode Guessing Game!".
+Speak "I have chosen a secret number between 1 and 100.".
+Speak "Can you guess it?".
+
+While guess is different from secret_number repeat
+    Ask "Enter your guess: " and save as guess.
+    Change attempts to attempts plus 1.
+    
+    If guess is same as secret_number then
+        Speak "Correct! You guessed it right!".
+        Speak "It took you " plus attempts plus " attempts.".
+    Otherwise if guess is above secret_number then
+        Speak "Too high! Try a smaller number.".
+    Otherwise
+        Speak "Too low! Try a larger number.".
+    Finish checking.
+Finish looping.

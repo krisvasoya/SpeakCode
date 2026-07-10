@@ -1,0 +1,22 @@
+note: Temperature Converter in SpeakCode.
+
+Speak "--- Temperature Converter ---".
+Speak "1. Celsius to Fahrenheit".
+Speak "2. Fahrenheit to Celsius".
+
+Remember 0 as choice.
+Ask "Enter choice (1/2): " and save as choice.
+
+If choice is same as 1 then
+    Remember 0 as celsius.
+    Ask "Enter temperature in Celsius: " and save as celsius.
+    Remember (celsius times 9 divided by 5) plus 32 as fahrenheit.
+    Speak celsius plus " Celsius is same as " plus fahrenheit plus " Fahrenheit.".
+Otherwise if choice is same as 2 then
+    Remember 0 as fahrenheit.
+    Ask "Enter temperature in Fahrenheit: " and save as fahrenheit.
+    Remember (fahrenheit minus 32) times 5 divided by 9 as celsius.
+    Speak fahrenheit plus " Fahrenheit is same as " plus celsius plus " Celsius.".
+Otherwise
+    Speak "Invalid choice selected.".
+Finish checking.

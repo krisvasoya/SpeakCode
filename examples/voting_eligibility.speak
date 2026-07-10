@@ -1,0 +1,21 @@
+note: Voting Eligibility Checker in SpeakCode.
+
+Speak "--- Voting Registration Desk ---".
+
+Remember 0 as age.
+Ask "Please enter your age: " and save as age.
+
+If age is at least 18 then
+    Remember "" as has_card.
+    Ask "Do you have a Voter ID Card? (yes/no): " and save as has_card.
+    
+    If has_card is same as "yes" then
+        Speak "You are eligible to vote! Please proceed to the booth.".
+    Otherwise
+        Speak "You are eligible but need a Voter ID Card. Please apply at the registration desk.".
+    Finish checking.
+Otherwise
+    Remember 18 minus age as years_left.
+    Speak "You are not eligible to vote yet.".
+    Speak "You must wait another " plus years_left plus " years.".
+Finish checking.

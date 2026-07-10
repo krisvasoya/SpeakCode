@@ -1,0 +1,23 @@
+note: FizzBuzz Implementation from 1 to 15 in SpeakCode.
+
+Remember 15 as limit.
+Remember 1 as counter.
+
+Speak "--- FizzBuzz (1 to 15) ---".
+
+While counter is at most limit repeat
+    Remember counter modulo 3 as mod_three.
+    Remember counter modulo 5 as mod_five.
+    
+    If (mod_three is same as 0) and (mod_five is same as 0) then
+        Speak "FizzBuzz".
+    Otherwise if mod_three is same as 0 then
+        Speak "Fizz".
+    Otherwise if mod_five is same as 0 then
+        Speak "Buzz".
+    Otherwise
+        Speak counter.
+    Finish checking.
+    
+    Change counter to counter plus 1.
+Finish looping.

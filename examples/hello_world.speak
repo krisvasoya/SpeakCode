@@ -1,0 +1,7 @@
+Note: Hello World in SpeakCode.
+
+Speak "Hello, World!".
+
+Note: We can register a conversational message and Speak it.
+Remember "SpeakCode is designed to read like simple English." as message.
+Speak message.

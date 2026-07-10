@@ -1,0 +1,22 @@
+note: Shopping Bill Calculator in SpeakCode.
+
+Speak "--- SpeakCode Shopping Checkout ---".
+
+Remember 0 as quantity.
+Remember 0 as unit_price.
+
+Ask "Enter item quantity: " and save as quantity.
+Ask "Enter unit price: $" and save as unit_price.
+
+Remember quantity times unit_price as total.
+Speak "Subtotal: $" plus total.
+
+If total is above 500 then
+    Remember total times 0.1 as discount.
+    Remember total minus discount as final_total.
+    Speak "Discount (10%): $" plus discount.
+    Speak "Final Bill   : $" plus final_total.
+Otherwise
+    Speak "Discount (0%) : $0".
+    Speak "Final Bill    : $" plus total.
+Finish checking.

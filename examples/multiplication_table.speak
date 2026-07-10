@@ -1,0 +1,13 @@
+note: Multiplication Table generator in SpeakCode.
+
+Remember 0 as num.
+Ask "Enter a number for its multiplication table: " and save as num.
+
+Remember 1 as counter.
+Speak "--- Table for " plus num plus " ---".
+
+While counter is at most 10 repeat
+    Remember num times counter as result.
+    Speak num plus " times " plus counter plus " is same as " plus result.
+    Change counter to counter plus 1.
+Finish looping.

@@ -1,0 +1,32 @@
+note: Area Calculator in SpeakCode.
+
+Speak "--- Shape Area Calculator ---".
+Speak "1. Circle".
+Speak "2. Rectangle".
+Speak "3. Triangle".
+
+Remember 0 as choice.
+Ask "Enter choice (1/2/3): " and save as choice.
+
+If choice is same as 1 then
+    Remember 0 as radius.
+    Ask "Enter circle radius: " and save as radius.
+    Remember 3.14 times radius times radius as area.
+    Speak "Area of Circle is same as " plus area.
+Otherwise if choice is same as 2 then
+    Remember 0 as length.
+    Remember 0 as width.
+    Ask "Enter rectangle length: " and save as length.
+    Ask "Enter rectangle width: " and save as width.
+    Remember length times width as area.
+    Speak "Area of Rectangle is same as " plus area.
+Otherwise if choice is same as 3 then
+    Remember 0 as base.
+    Remember 0 as height.
+    Ask "Enter triangle base: " and save as base.
+    Ask "Enter triangle height: " and save as height.
+    Remember 0.5 times base times height as area.
+    Speak "Area of Triangle is same as " plus area.
+Otherwise
+    Speak "Invalid choice selected.".
+Finish checking.

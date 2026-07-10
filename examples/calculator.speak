@@ -1,0 +1,27 @@
+note: Conversational Calculator in SpeakCode.
+
+Speak "Welcome to the SpeakCode Calculator!".
+
+Remember 0 as first_number.
+Remember 0 as second_number.
+
+Ask "Enter the first number: " and save as first_number.
+Ask "Enter the second number: " and save as second_number.
+
+Speak "--- Results ---".
+
+Remember first_number plus second_number as sum.
+Speak "Addition: " plus sum.
+
+Remember first_number minus second_number as difference.
+Speak "Subtraction: " plus difference.
+
+Remember first_number times second_number as product.
+Speak "Multiplication: " plus product.
+
+If second_number is same as 0 then
+    Speak "Division: Cannot divide by zero!".
+Otherwise
+    Remember first_number divided by second_number as quotient.
+    Speak "Division: " plus quotient.
+Finish checking.

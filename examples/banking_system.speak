@@ -1,0 +1,43 @@
+note: Simple Banking System in SpeakCode.
+
+Remember 1000 as balance.
+Remember 0 as choice.
+
+Speak "Welcome to the SpeakCode Bank!".
+
+While choice is different from 4 repeat
+    Speak "--- MENU ---".
+    Speak "1. View Balance".
+    Speak "2. Deposit Money".
+    Speak "3. Withdraw Money".
+    Speak "4. Exit".
+    Ask "Enter choice: " and save as choice.
+    
+    If choice is same as 1 then
+        Speak "Your current balance is: $" plus balance.
+    Otherwise if choice is same as 2 then
+        Remember 0 as deposit_amount.
+        Ask "Enter amount to deposit: $" and save as deposit_amount.
+        If deposit_amount is below 0 then
+            Speak "Invalid amount! Cannot deposit negative values.".
+        Otherwise
+            Change balance to balance plus deposit_amount.
+            Speak "Deposited $" plus deposit_amount plus " successfully.".
+        Finish checking.
+    Otherwise if choice is same as 3 then
+        Remember 0 as withdraw_amount.
+        Ask "Enter amount to withdraw: $" and save as withdraw_amount.
+        If withdraw_amount is below 0 then
+            Speak "Invalid amount! Cannot withdraw negative values.".
+        Otherwise if withdraw_amount is above balance then
+            Speak "Insufficient funds! Cannot withdraw.".
+        Otherwise
+            Change balance to balance minus withdraw_amount.
+            Speak "Withdrew $" plus withdraw_amount plus " successfully.".
+        Finish checking.
+    Otherwise if choice is same as 4 then
+        Speak "Thank you for banking with us!".
+    Otherwise
+        Speak "Invalid choice. Please select a valid menu option.".
+    Finish checking.
+Finish looping.

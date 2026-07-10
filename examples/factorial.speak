@@ -1,0 +1,18 @@
+note: Factorial Calculator using a while loop in SpeakCode.
+
+Remember 0 as n.
+Ask "Enter a positive integer: " and save as n.
+
+If n is below 0 then
+    Speak "Factorial is not defined for negative numbers.".
+Otherwise
+    Remember 1 as result.
+    Remember 1 as counter.
+    
+    While counter is at most n repeat
+        Change result to result times counter.
+        Change counter to counter plus 1.
+    Finish looping.
+    
+    Speak "The factorial of " plus n plus " is " plus result.
+Finish checking.

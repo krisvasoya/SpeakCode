@@ -1,0 +1,40 @@
+note: Student Result System in SpeakCode.
+
+Speak "--- Student Grading System ---".
+
+Remember "" as student_name.
+Ask "Enter student name: " and save as student_name.
+
+Remember 0 as math_marks.
+Ask "Enter Mathematics marks: " and save as math_marks.
+
+Remember 0 as science_marks.
+Ask "Enter Science marks: " and save as science_marks.
+
+Remember 0 as english_marks.
+Ask "Enter English marks: " and save as english_marks.
+
+Remember math_marks plus science_marks plus english_marks as total.
+Remember total divided by 3 as average.
+
+Speak "--------------------------------".
+Speak "Student Name: " plus student_name.
+Speak "Total Marks : " plus total.
+Speak "Average Marks: " plus average.
+
+If (math_marks is below 40) or (science_marks is below 40) or (english_marks is below 40) then
+    Speak "Status: Failed (Subject marks below 40)".
+    Speak "Grade : F".
+Otherwise
+    Speak "Status: Passed".
+    If average is at least 80 then
+        Speak "Grade : A".
+    Otherwise if average is at least 60 then
+        Speak "Grade : B".
+    Otherwise if average is at least 40 then
+        Speak "Grade : C".
+    Otherwise
+        Speak "Grade : D".
+    Finish checking.
+Finish checking.
+Speak "--------------------------------".

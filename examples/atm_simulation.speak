@@ -1,0 +1,25 @@
+note: ATM Simulation with PIN checking in SpeakCode.
+
+Remember 1234 as correct_pin.
+Remember 3 as attempts_left.
+Remember 0 as entered_pin.
+Remember false as is_authorized.
+
+Speak "--- Welcome to SpeakCode ATM ---".
+
+While (attempts_left is above 0) and (is_authorized is same as false) repeat
+    Speak "Attempts remaining: " plus attempts_left.
+    Ask "Enter your 4-digit PIN: " and save as entered_pin.
+    
+    If entered_pin is same as correct_pin then
+        Change is_authorized to true.
+        Speak "Authentication successful! Access granted.".
+    Otherwise
+        Change attempts_left to attempts_left minus 1.
+        Speak "Incorrect PIN.".
+    Finish checking.
+Finish looping.
+
+If is_authorized is same as false then
+    Speak "Card blocked. Too many incorrect attempts.".
+Finish checking.

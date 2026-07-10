@@ -1,0 +1,23 @@
+note: Functions and hoisting demonstration in SpeakCode.
+
+Speak "--- Functions & Hoisting Demo ---".
+
+Remember 10 as x.
+Remember 20 as y.
+
+note: Call add_numbers which is declared further down!
+Perform add_numbers with x and y and save as result.
+Speak "Adding " plus x plus " and " plus y plus " gives: " plus result.
+
+note: Call simple_greet.
+Perform simple_greet.
+
+note: Declare the functions here.
+To perform add_numbers with a and b:
+    Remember a plus b as sum_val.
+    Give back sum_val.
+Finish performance.
+
+To perform simple_greet:
+    Speak "Hello from a SpeakCode function!".
+Finish performance.

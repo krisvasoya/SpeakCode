@@ -1,0 +1,29 @@
+note: Fibonacci Generator using repeat loop in SpeakCode.
+
+Remember 0 as terms.
+Ask "How many Fibonacci terms would you like to print? " and save as terms.
+
+If terms is below 1 then
+    Speak "Please enter a number of at least 1.".
+Otherwise
+    Remember 0 as a.
+    Remember 1 as b.
+    
+    Speak "--- Fibonacci Sequence ---".
+    
+    If terms is same as 1 then
+        Speak a.
+    Otherwise
+        Speak a.
+        Speak b.
+        
+        Remember terms minus 2 as remaining.
+        
+        Repeat remaining times
+            Remember a plus b as next_val.
+            Speak next_val.
+            Change a to b.
+            Change b to next_val.
+        Finish looping.
+    Finish checking.
+Finish checking.
