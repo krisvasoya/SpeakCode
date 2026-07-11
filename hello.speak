@@ -1,0 +1,6 @@
+Remember 20 as age.
+If age is at least 18 then
+    Speak "Adult".
+Otherwise
+    Speak "Minor".
+Finish checking.
